@@ -27,8 +27,8 @@
             version: "1", // 语言包版本号
             langUrlRegExp: new RegExp("\\blang=(.+?)\\b", "i"), // URL语言码匹配规则
             langUaRegExp: new RegExp("\\blang\\/(.+?)\\b", "i"), // UA语言码匹配规则
-            LocationUrlRegExp: new RegExp("\\blocation=(.+?)\\b", "i"), // URL国家码匹配规则
-            LocationUaRegExp: new RegExp("\\blocation\\/(.+?)\\b", "i"), // UA国家码匹配规则
+            locationUrlRegExp: new RegExp("\\blocation=(.+?)\\b", "i"), // URL国家码匹配规则
+            locationUaRegExp: new RegExp("\\blocation\\/(.+?)\\b", "i"), // UA国家码匹配规则
             rtlList: ['ar'], // 阅读习惯从右到左集合
             dataType: "json", // 语言文件类型
             callback: function () {} // 加载成功后回调
@@ -147,7 +147,7 @@
     VueMultiLang.prototype.getLangFromUrl = function () {
         var search = window.location.search.toLocaleLowerCase();
         var lang = search.match(this.options.langUrlRegExp);
-        var location = search.match(this.options.LocationUrlRegExp);
+        var location = search.match(this.options.locationUrlRegExp);
 
         return {
             lang: lang && lang[1],
@@ -162,7 +162,7 @@
     VueMultiLang.prototype.getLangFromUA = function () {
         var userAgent = window.navigator.userAgent.toLocaleLowerCase();
         var lang = userAgent.match(this.options.langUaRegExp);
-        var location = userAgent.match(this.options.LocationUaRegExp);
+        var location = userAgent.match(this.options.locationUaRegExp);
 
         return {
             lang: lang && lang[1],
