@@ -1,7 +1,7 @@
 {
   "name": "vue-multilang",
   "description": "multilanguage easy support to Vue.js 2",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "dongshaohan",
   "main": "dist/vue-multilang.common.js",
   "module": "dist/vue-multilang.esm.js",
