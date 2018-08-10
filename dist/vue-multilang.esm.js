@@ -16,14 +16,14 @@ var VueMultiLang = function (options) {
     if (options === void 0) options = {};
 
     var defaultOpt = {
-        lang: [], // 语言码集合 *必填
-        path: "", // 语言包地址 *必填
+        lang: [], // 项目需要配置的语言码集合 *必填
+        path: "", // 语言包地址
         defaultLang: "en", // 容错处理 设置默认语言 防止匹配不到语言码最后为空
         version: "1", // 语言包版本号
-        langUrlRegExp: new RegExp("\\blang=(.+?)\\b", "i"), // URL语言码匹配规则
-        langUaRegExp: new RegExp("\\blang\\/(.+?)\\b", "i"), // UA语言码匹配规则
-        locationUrlRegExp: new RegExp("\\blocation=(.+?)\\b", "i"), // URL国家码匹配规则
-        locationUaRegExp: new RegExp("\\blocation\\/(.+?)\\b", "i"), // UA国家码匹配规则
+        langUrlRegExp: /\blang=(.+?)\b/i, // URL语言码匹配规则
+        langUaRegExp: /\blang\/(.+?)\b/i, // UA语言码匹配规则
+        locationUrlRegExp: /\blocation=(.+?)\b/i, // URL国家码匹配规则
+        locationUaRegExp: /\blocation\/(.+?)\b/i, // UA国家码匹配规则
         rtlList: ['ar'], // 阅读习惯从右到左集合
         dataType: "json", // 语言文件类型
         callback: function () {} // 加载成功后回调
@@ -94,7 +94,7 @@ VueMultiLang.prototype.initLang = function (app) {
     Object.defineProperty(app._langUtil, 'langObj', {
         configurable: true,
         get: function () {
-            return $this.settings['langObj'] || {};
+            return $this.settings['langObj'];
         },
         set: function (value) {
             $this.settings['langObj'] = value;
@@ -169,10 +169,6 @@ VueMultiLang.prototype.getLangFromUA = function () {
  * @param requestUrl 请求资源路径
  */
 VueMultiLang.prototype.getFiles = function (requestUrl) {
-    if (requestUrl == void 0) {
-        alert('can not find the lang file');
-        return;
-    }
     var xmlhttp = {}, $this = this;
     if (window.XMLHttpRequest) {
         xmlhttp = new window.XMLHttpRequest();
@@ -306,7 +302,7 @@ VueMultiLang.version = '1.0';
 
 var inBrowser = typeof window !== 'undefined';
 if (inBrowser && window.Vue) {
-    window.Vue.use(VueRouter);
+    window.Vue.use(VueMultiLang);
 }
 
 export default VueMultiLang;
