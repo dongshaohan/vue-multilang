@@ -64,7 +64,7 @@ More details:
     - **@param key**: 语言包字段
     - **@param args**: 动态参数列表
     
-use in components - this.$route inside of any component
+use in components - this.$lang inside of any component
 ```bash 
 export default {
     ...,
