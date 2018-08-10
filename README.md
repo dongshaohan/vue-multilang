@@ -56,7 +56,7 @@ new Vue({
 
 More details:
 - **langCode**: 语言码
-- **contryCode**: 国家码
+- **countryCode**: 国家码
 - **langObj**: 语言包数据
 - **onReady**: 语言包加载完毕后的回调函数 可写多个
     - **@param fn(data)**: data是语言包数据
@@ -80,14 +80,15 @@ export default {
              * {'rank': 'my name is %s'} from langObj 
              */
              
-            // result: 'my name is dongshaohan';
-            return this.$lang.template('rank', 'dongshaohan');
+            // result: 'my name is dongshaohan'
+            return this.$lang.template('rank', 'dongshaohan')
         }
     },
     created() {
         this.$lang.onReady(() => {
-            this.langObj = this.$lang.langObj;
-            this.lang = this.$lang.langCode;
+            this.langObj = this.$lang.langObj
+            this.langCode = this.$lang.langCode
+            this.countryCode = this.$lang.countryCode
         });
     },
     ...
@@ -96,7 +97,7 @@ export default {
 use in window - window.multiLang
 ```bash
 window.multiLang.langCode
-window.multiLang.contryCode
+window.multiLang.countryCode
 window.multiLang.langObj
 window.multiLang.onReady
 window.multiLang.template

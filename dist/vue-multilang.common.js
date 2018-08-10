@@ -79,7 +79,7 @@ VueMultiLang.prototype.initLang = function (app) {
 
     app._langUtil = {
         langCode: langObj.lang,
-        contryCode: langObj.contryCode,
+        countryCode: langObj.countryCode,
         onReady: function (fn) {
             $this.onReady(fn);
         },
@@ -106,14 +106,14 @@ VueMultiLang.prototype.initLang = function (app) {
 
 /**
  * 获取URL或者浏览器信息中的语言码并转成短码
- * @returns {{lang: string, contryCode: string}}
+ * @returns {{lang: string, countryCode: string}}
  */
 VueMultiLang.prototype.getLangCode = function () {
     var langFromUrl = this.getLangFromUrl();
     var langFromApp = this.getLangFromUA();
 
     var langCode = (langFromUrl.lang || langFromApp.lang || navigator.language || navigator.userLanguage).toLowerCase();
-    var contryCode = langFromUrl.contryCode || langFromApp.contryCode || '';
+    var countryCode = langFromUrl.countryCode || langFromApp.countryCode || '';
 
     // 在lang字段中没有直接找到，则自动匹配langZip
     if (this.options.lang && this.options.lang.indexOf(langCode) == -1) {
@@ -131,13 +131,13 @@ VueMultiLang.prototype.getLangCode = function () {
 
     return {
         lang: langCode,
-        contryCode: contryCode
+        countryCode: countryCode
     }
 };
 
 /**
  * 从URL参数中取出指定语言码字段
- * @returns {{lang: string, contryCode: string}}
+ * @returns {{lang: string, countryCode: string}}
  */
 VueMultiLang.prototype.getLangFromUrl = function () {
     var search = window.location.search.toLocaleLowerCase();
@@ -146,13 +146,13 @@ VueMultiLang.prototype.getLangFromUrl = function () {
 
     return {
         lang: lang && lang[1],
-        contryCode: location && location[1]
+        countryCode: location && location[1]
     };
 };
 
 /**
  * 从userAgent取出指定语言码字段
- * @returns {{lang: string, contryCode: string}}
+ * @returns {{lang: string, countryCode: string}}
  */
 VueMultiLang.prototype.getLangFromUA = function () {
     var userAgent = window.navigator.userAgent.toLocaleLowerCase();
@@ -161,7 +161,7 @@ VueMultiLang.prototype.getLangFromUA = function () {
 
     return {
         lang: lang && lang[1],
-        contryCode: location && location[1]
+        countryCode: location && location[1]
     };
 };
 
