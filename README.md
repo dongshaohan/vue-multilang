@@ -5,7 +5,7 @@
 
 ```bash
 # npm
-npm install vue-multilang --save
+npm install vue-multilang --save-dev
 ```
 
 ## Example
@@ -96,11 +96,11 @@ export default {
 ```
 use in window - window.multiLang
 ```bash
-window.multiLang.langCode
-window.multiLang.countryCode
-window.multiLang.langObj
-window.multiLang.onReady
-window.multiLang.template
+window.$multiLang.langCode
+window.$multiLang.countryCode
+window.$multiLang.langObj
+window.$multiLang.onReady
+window.$multiLang.template
 ```
 
 ## Config

@@ -256,8 +256,8 @@ VueMultiLang.prototype.template = function (key, args) {
  * @param value
  */
 VueMultiLang.prototype.setLangCache = function (key, value) {
-    window.multiLang = window.multiLang || {};
-    window.multiLang[key] = value;
+    window.$multiLang = window.$multiLang || {};
+    window.$multiLang[key] = value;
 };
 
 var _Vue;
