@@ -1,5 +1,5 @@
 /**
- * VueMultiLang v1.0
+ * VueMultiLang v1.0.3
  * (c) 2018 dongshaohan
  * @license MIT
  */
@@ -298,7 +298,7 @@ function install(Vue) {
 }
 
 VueMultiLang.install = install;
-VueMultiLang.version = '1.0';
+VueMultiLang.version = '1.0.3';
 
 var inBrowser = typeof window !== 'undefined';
 if (inBrowser && window.Vue) {
