@@ -94,7 +94,7 @@ export default {
     ...
 }
 ```
-use in window - window.multiLang
+use in window - window.$multiLang
 ```bash
 window.$multiLang.langCode
 window.$multiLang.countryCode
