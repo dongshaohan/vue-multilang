@@ -105,7 +105,7 @@ window.$multiLang.template
 
 ## Config
 |name|required|type|introduction|
-|-----|-----|-----|-----|
+|----|----|----|----|
 |lang|yes|array|项目需要配置的语言码集合，写成数组形式['en', 'th', 'id']|
 |path|no|string|语言包路径，默认是空字符串|
 |defaultLang|no|string|设置默认语言，防止匹配不到语言包出错|
@@ -115,5 +115,5 @@ window.$multiLang.template
 |locationUrlRegExp|no|string|URL国家码匹配规则，默认/\blocation=(.+?)\b/i|
 |locationUaRegExp|no|string|UA国家码匹配规则，默认/\blocation\/(.+?)\b/i|
 |rtlList|no|array|阅读习惯从右到左的语言码集合|
-|dataType|no|string|语言包文件类型|
+|dataType|no|string|语言包文件类型，默认json|
 |callback|no|function|语言包加载成功后回调，参数data为返回的值|
