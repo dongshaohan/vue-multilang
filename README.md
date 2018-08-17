@@ -81,7 +81,7 @@ export default {
              */
              
             // result: 'my name is dongshaohan'
-            return this.$lang.template('rank', 'dongshaohan')
+            return this.$lang.template('rank', ['dongshaohan'])
         }
     },
     created() {

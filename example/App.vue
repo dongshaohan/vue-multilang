@@ -14,8 +14,20 @@
                 lang: ''
             }
         },
+        computed: {
+            text() {
+                /**
+                 * {'rank': 'my name is %s'} from langObj
+                 */
+                // result: 'my name is dongshaohan'
+                return this.$lang.template('rank', ['dongshaohan']);
+            }
+        },
         created() {
             this.$lang.onReady(() => {
+                console.log('语言包加载完毕');
+                console.log('langCode', this.$lang.langCode);
+                console.log(this.$lang.template('vote-14', [100, 200]));
                 this.langObj = this.$lang.langObj;
                 this.lang = this.$lang.langCode;
             });

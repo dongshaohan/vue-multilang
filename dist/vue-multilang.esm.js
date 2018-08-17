@@ -1,10 +1,10 @@
-/**
- * VueMultiLang v1.0.3
- * (c) 2018 dongshaohan
- * @license MIT
- */
+/*!
+  * vue-multilang v1.0.3
+  * (c) 2018 dongshaohan
+  * @license MIT
+  */
+/*  */
 
-'use strict';
 var extend = function (to, from) {
     for (var key in from) {
         to[key] = from[key];
@@ -12,8 +12,8 @@ var extend = function (to, from) {
     return to;
 };
 
-var VueMultiLang = function (options) {
-    if (options === void 0) options = {};
+var VueMultiLang = function VueMultiLang (options) {
+    if ( options === void 0 ) options = {};
 
     var defaultOpt = {
         lang: [], // 项目需要配置的语言码集合 *必填
@@ -28,46 +28,49 @@ var VueMultiLang = function (options) {
         dataType: "json", // 语言文件类型
         callback: function () {} // 加载成功后回调
     };
-    this.options = extend(defaultOpt, options);
     this.settings = { // 保存数据
         isReady: false,
         langObj: {},
         list: []
     };
+    this.options = extend(defaultOpt, options);
 };
 
 /**
  * 浏览器语言
  */
-VueMultiLang.prototype.langZip = {
-    'cn': 'cn,zh,zh-hans,zh-cn,zh-hans-cn,zh-sg,zh-hans-sg',
-    'tw': 'tw,zh-hant,zh-hk,zh-mo,zh-tw,zh-hant-hk,zh-hant-mo,zh-hant-tw',
-    'en': 'en,en-au,en-bz,en-ca,en-cb,en-ie,en-jm,en-nz,en-ph,en-za,en-tt,en-gb,en-us,en-zw,en-sg',
-    'th': 'th,th-th',
-    'vi': 'vn,vi-vn,vi,vn-vn',
-    'ru': 'ru,ru-ru,ru-mo',
-    'id': 'id,id-id,in-id',
-    'ko': 'ko,ko-kr',
-    'hi': 'in,hi,hi-in',
-    'sg': 'sg',
-    'ar': 'ar,ar-er,ar-sa,ar-eg,ar-dz,ar-tn,ar-ye,ar-jo,ar-kw,ar-bh,ar-iq,ar-ly,ar-ma,ar-om,ar-sy,ar-lb,ar-ae,ar-qa,ar-ss,ar-il',
-    'af': 'af,af-za',
-    'tr': 'tr,tr-tr',
-    'es': 'es,es-ar,es-bo,es-cl,es-co,es-cr,es-do,es-ec,es-es,es-gt,es-hn,es-mx,es-ni,es-pa,es-pe,es-pr,es-py,es-sv,es-uy,es-ve,es-xl',
-    'ms': 'ms,ms-bn,ms-my,my',
-    'pt': 'pt,pt-pt,pt-br',
-    'ja': 'ja,ja-jp,ja-ja,jp,jp-jp',
-    'ur': 'ur,ur-pk',
-    'de': 'de,de-at,de-ch,de-de,de-li,de-lu',
-    'ne': 'ne,ne-np',
-    'bn': 'bn,bn-bd,bn-in'
+VueMultiLang.prototype.langZip = function langZip () {
+    return {
+        'cn': 'cn,zh,zh-hans,zh-cn,zh-hans-cn,zh-sg,zh-hans-sg',
+        'tw': 'tw,zh-hant,zh-hk,zh-mo,zh-tw,zh-hant-hk,zh-hant-mo,zh-hant-tw',
+        'en': 'en,en-au,en-bz,en-ca,en-cb,en-ie,en-jm,en-nz,en-ph,en-za,en-tt,en-gb,en-us,en-zw,en-sg',
+        'th': 'th,th-th',
+        'vi': 'vn,vi-vn,vi,vn-vn',
+        'ru': 'ru,ru-ru,ru-mo',
+        'id': 'id,id-id,in-id',
+        'ko': 'ko,ko-kr',
+        'hi': 'in,hi,hi-in',
+        'sg': 'sg',
+        'ar': 'ar,ar-er,ar-sa,ar-eg,ar-dz,ar-tn,ar-ye,ar-jo,ar-kw,ar-bh,ar-iq,ar-ly,ar-ma,ar-om,ar-sy,ar-lb,ar-ae,ar-qa,ar-ss,ar-il',
+        'af': 'af,af-za',
+        'tr': 'tr,tr-tr',
+        'es': 'es,es-ar,es-bo,es-cl,es-co,es-cr,es-do,es-ec,es-es,es-gt,es-hn,es-mx,es-ni,es-pa,es-pe,es-pr,es-py,es-sv,es-uy,es-ve,es-xl',
+        'ms': 'ms,ms-bn,ms-my,my',
+        'pt': 'pt,pt-pt,pt-br',
+        'ja': 'ja,ja-jp,ja-ja,jp,jp-jp',
+        'ur': 'ur,ur-pk',
+        'de': 'de,de-at,de-ch,de-de,de-li,de-lu',
+        'ne': 'ne,ne-np',
+        'bn': 'bn,bn-bd,bn-in'
+    }
 };
 
 /**
  * @param app - Vue component instance
  */
-VueMultiLang.prototype.initLang = function (app) {
-    var $this = this;
+VueMultiLang.prototype.initLang = function initLang (app) {
+        var this$1 = this;
+
     var langObj = this.getLangCode();
 
     // 阿拉伯语阅读习惯是从右到左
@@ -80,24 +83,20 @@ VueMultiLang.prototype.initLang = function (app) {
     app._langUtil = {
         langCode: langObj.lang,
         countryCode: langObj.countryCode,
-        onReady: function (fn) {
-            $this.onReady(fn);
-        },
-        template: function (key) {
-            return $this.template.call($this, key, arguments);
-        }
+        onReady: function (fn) { return this$1.onReady(fn); },
+        template: function (key, arr) { return this$1.template(key, arr); }
     };
-    for (var k in app._langUtil) {
-        this.setLangCache(k, app._langUtil[k]);
+    for (var i in app._langUtil) {
+        this$1.setLangCache(i, app._langUtil[i]);
     }
     // 因为langObj保存着ajax回调数据 会异步 采用双向数据监听方式
     Object.defineProperty(app._langUtil, 'langObj', {
         configurable: true,
         get: function () {
-            return $this.settings['langObj'];
+            return this$1.settings['langObj'];
         },
         set: function (value) {
-            $this.settings['langObj'] = value;
+            this$1.settings['langObj'] = value;
         }
     });
 
@@ -108,7 +107,9 @@ VueMultiLang.prototype.initLang = function (app) {
  * 获取URL或者浏览器信息中的语言码并转成短码
  * @returns {{lang: string, countryCode: string}}
  */
-VueMultiLang.prototype.getLangCode = function () {
+VueMultiLang.prototype.getLangCode = function getLangCode () {
+        var this$1 = this;
+
     var langFromUrl = this.getLangFromUrl();
     var langFromApp = this.getLangFromUA();
 
@@ -121,8 +122,8 @@ VueMultiLang.prototype.getLangCode = function () {
 
         langCode = this.options.defaultLang; // 设置默认语言
 
-        for (var i in this.langZip) {
-            if (this.langZip[i].match(reg)) {
+        for (var i in this$1.langZip()) {
+            if (this$1.langZip()[i].match(reg)) {
                 langCode = i;
                 break;
             }
@@ -139,7 +140,7 @@ VueMultiLang.prototype.getLangCode = function () {
  * 从URL参数中取出指定语言码字段
  * @returns {{lang: string, countryCode: string}}
  */
-VueMultiLang.prototype.getLangFromUrl = function () {
+VueMultiLang.prototype.getLangFromUrl = function getLangFromUrl () {
     var search = window.location.search.toLocaleLowerCase();
     var lang = search.match(this.options.langUrlRegExp);
     var location = search.match(this.options.locationUrlRegExp);
@@ -154,7 +155,7 @@ VueMultiLang.prototype.getLangFromUrl = function () {
  * 从userAgent取出指定语言码字段
  * @returns {{lang: string, countryCode: string}}
  */
-VueMultiLang.prototype.getLangFromUA = function () {
+VueMultiLang.prototype.getLangFromUA = function getLangFromUA () {
     var userAgent = window.navigator.userAgent.toLocaleLowerCase();
     var lang = userAgent.match(this.options.langUaRegExp);
     var location = userAgent.match(this.options.locationUaRegExp);
@@ -168,20 +169,23 @@ VueMultiLang.prototype.getLangFromUA = function () {
 /**
  * @param requestUrl 请求资源路径
  */
-VueMultiLang.prototype.getFiles = function (requestUrl) {
-    var xmlhttp = {}, $this = this;
+VueMultiLang.prototype.getFiles = function getFiles (requestUrl) {
+        var this$1 = this;
+
+    var xmlhttp = {};
     if (window.XMLHttpRequest) {
         xmlhttp = new window.XMLHttpRequest();
     } else {
         xmlhttp = new window.ActiveXObject('Microsoft.XMLHTTP');
     }
-    xmlhttp.onreadystatechange = function () {
+    xmlhttp.onreadystatechange = function (){
         if (xmlhttp.readyState === 4) {
             if (xmlhttp.status === 200) {
                 try {
-                    var data = $this.options.dataType === 'txt' ? xmlhttp.responseText : JSON.parse(xmlhttp.responseText);
-                    $this.resolve(data);
+                    var data = this$1.options.dataType === 'txt' ? xmlhttp.responseText : JSON.parse(xmlhttp.responseText);
+                    this$1.resolve(data);
                 } catch (e) {
+                    console.error(e.message);
                     alert('bad lang file');
                 }
             } else {
@@ -200,7 +204,7 @@ VueMultiLang.prototype.getFiles = function (requestUrl) {
  * 订阅器
  * @param fn
  */
-VueMultiLang.prototype.add = function (fn) {
+VueMultiLang.prototype.add = function add (fn) {
     if (typeof fn === 'function') {
         this.settings.list.push(fn);
     }
@@ -210,7 +214,7 @@ VueMultiLang.prototype.add = function (fn) {
  * 发布器
  * @param data
  */
-VueMultiLang.prototype.resolve = function (data) {
+VueMultiLang.prototype.resolve = function resolve (data) {
     this.settings.langObj = data;
     this.settings.isReady = true;
     this.setLangCache('langObj', data);
@@ -224,7 +228,7 @@ VueMultiLang.prototype.resolve = function (data) {
  * 语言包加载完毕后的回调
  * @param fn
  */
-VueMultiLang.prototype.onReady = function (fn) {
+VueMultiLang.prototype.onReady = function onReady (fn) {
     if (typeof fn !== 'function') {
         fn = function () {};
     }
@@ -238,14 +242,17 @@ VueMultiLang.prototype.onReady = function (fn) {
 /**
  * 模板内容替换
  * @param key 语言包字段
- * @param args
+ * @param arr:Array
  * @returns {json}
  */
-VueMultiLang.prototype.template = function (key, args) {
-    var len = args.length;
+VueMultiLang.prototype.template = function template (key, arr) {
+    if (typeof arr !== 'object' || !arr.length) {
+        arr = [];
+    }
+    var len = arr.length;
     var str = this.settings.langObj[key] || '';
-    for (var i = 1; i < len; i++) {
-        str = str.replace(/%s/, args[i]);
+    for (var i = 0; i < len; i++) {
+        str = str.replace(/%s/, arr[i]);
     }
     return str;
 };
@@ -255,7 +262,7 @@ VueMultiLang.prototype.template = function (key, args) {
  * @param key
  * @param value
  */
-VueMultiLang.prototype.setLangCache = function (key, value) {
+VueMultiLang.prototype.setLangCache = function setLangCache (key, value) {
     window.$multiLang = window.$multiLang || {};
     window.$multiLang[key] = value;
 };
